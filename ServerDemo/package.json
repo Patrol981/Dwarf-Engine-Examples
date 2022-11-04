@@ -1,0 +1,15 @@
+{
+  "name": "ServerDemo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Patryk Markowski",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "4",
+    "nodemon": "^2.0.20",
+    "socket.io": "^4.5.3"
+  }
+}
