@@ -6,11 +6,15 @@ using Dwarf.Engine.ECS;
 using Dwarf.Engine.Globals;
 using Dwarf.Engine.Scenes;
 using Dwarf.Engine.Toolbox;
+
 using ImGuiNET;
+
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
+
 using SocketIOClient;
+
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -238,7 +242,7 @@ public class NetworkDemo {
       SpawnEmptyPlayerInstance(
         root.Players[i].Guid,
         new Vector3(
-          0,0,0
+          0, 0, 0
         )
       );
     }
@@ -251,7 +255,7 @@ public class NetworkDemo {
   void CreatePlayer() {
     var terrain = _engine.GetEntitiesByType(EntityType.Terrain).FirstOrDefault();
 
-    var player = Entity.CreateWithCollision<NetworkEntity>(
+    var player = Entity.CreateMeshWithCollision<NetworkEntity>(
       "my_player",
       new Vector3(0, 0, 0),
       "Resources/chr_knight/chr_knight.obj",

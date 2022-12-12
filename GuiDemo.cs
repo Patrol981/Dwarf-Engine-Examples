@@ -13,7 +13,6 @@ public class GuiDemo {
   private Scene _scene;
   private EngineClass _engine;
   private ImGuiPreset _preset = new ImGuiPreset();
-  private FileExplorer _fileExplorer;
 
   private System.Numerics.Vector4 _color = System.Numerics.Vector4.Zero;
 
@@ -40,12 +39,12 @@ public class GuiDemo {
 
   void OnLoad() {
     _preset.Update();
-    _fileExplorer = new FileExplorer(DialogMode.Open);
+    FileExplorer.SetupExplorer(DialogMode.Open);
     
   }
 
   void OnDrawGUI() {
-    _fileExplorer.Update();
+    FileExplorer.GetFileExplorer()?.Update();
 
     ImGui.ShowDemoWindow();
 

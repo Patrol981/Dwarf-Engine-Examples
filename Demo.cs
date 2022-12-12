@@ -62,6 +62,8 @@ public class Demo {
         }
       }
 
+      
+
       if (ImGui.BeginMenu("Debug Data")) {
         var entities = EntityGlobalState.GetEntities();
         for (int i = 0; i < entities.Count; i++) {
@@ -111,17 +113,12 @@ public class Demo {
       }
     }
 
-    if (ImGui.Begin("Camera Test")) {
-      if (EntityGlobalState.GetEntities().Count == 0) return;
-      var cameraTransform = CameraGlobalState.GetCameraEntity().GetComponent<Transform>();
-      var camera = CameraGlobalState.GetCameraEntity().GetComponent<ThirdPersonCamera>();
-
-      ImGui.Text("Camera");
-      ImGui.Text($"X:{cameraTransform.Position.X} Y:{cameraTransform.Position.Y} Z:{cameraTransform.Position.Z}");
-      ImGui.Text($"X:{cameraTransform.Rotation.X} Y:{cameraTransform.Rotation.Y} Z:{cameraTransform.Rotation.Z}");
+    if (ImGui.Begin("Camera")) {
+      var camera = CameraGlobalState.GetCameraEntity();
+      ImGui.Text(camera.GetComponent<Transform>().Position.ToString());
     }
 
-    if(ImGui.Begin("Raycaster")) {
+    if (ImGui.Begin("Raycaster")) {
       var camera = CameraGlobalState.GetCameraEntity();
 
       _engine.Raycaster.Update();
@@ -131,7 +128,7 @@ public class Demo {
       ImGui.Text(_engine.Raycaster.WorldPoint.ToString());
 
       var entities = _engine.GetEntities();
-      var target = entities[4];
+      var target = entities[3];
       var target2 = entities[2];
 
       ImGui.Text("World Model");
@@ -198,27 +195,6 @@ public class Demo {
       ImGui.Text($"X: {TerrainDebug.X}");
       ImGui.Text($"Z: {TerrainDebug.Z}");
       ImGui.Text($"R: {TerrainDebug.R}");
-    }
-
-    if(ImGui.Begin("Line Test")) {
-      var entities = _engine.GetEntities();
-      var target = entities[3];
-
-      ImGui.Text(target.Name);
-      if (target.GetComponent<Line3D>() == null) return;
-
-      // var cnvPos = new System.Numerics.Vector3(_lineVec.X, _lineVec.Y, _lineVec.Z);
-      ImGui.DragFloat3("Position", ref _lineVec, 0.01f);
-      ImGui.DragFloat3("Color", ref _lineColor, 0.01f);
-
-      //target.GetComponent<Line3D>().SetLine(new Vector3(0, 0, 0), new Vector3(_lineVec.X, _lineVec.Y, _lineVec.Z));
-      target.GetComponent<Material>().SetColor(new Vector3(_lineColor.X, _lineColor.Y, _lineColor.Z));
-
-      var floats = target.GetComponent<Line3D>().GetFloats();
-
-      ImGui.Text(new Vector3(floats[0], floats[1], floats[2]).ToString());
-      ImGui.Text(new Vector3(floats[3], floats[4], floats[5]).ToString());
-      ImGui.Text(target.GetComponent<Material>().GetColor().ToString());
     }
 
     if (ImGui.Begin("Boundings")) {

@@ -1,0 +1,3 @@
+bin/*
+obj/*
+ServerDemo/node_modules/*

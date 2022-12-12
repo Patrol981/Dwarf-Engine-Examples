@@ -19,7 +19,7 @@ public class DemoScene : Scene {
     var window = WindowGlobalState.GetWindow();
 
     var camera = new Entity();
-    
+
     var newTerrain = new Entity();
     Entities.Add(newTerrain);
     newTerrain.AddComponent(new Transform(new Vector3(-20, 0, -20)));
@@ -32,10 +32,9 @@ public class DemoScene : Scene {
     newTerrain.Name = "chunk";
     newTerrain.Type = EntityType.Terrain;
 
-    /*
-    var objTest = Entity.CreateWithCollision(
+    var objTest = Entity.CreateMeshWithCollision<Entity>(
       "chr_knight",
-      new Vector3(0, 0, 0),
+      new Vector3(0, 0, -50),
       "Resources/chr_knight/chr_knight.obj",
       "./Shaders/vertexShader.vert",
       "./Shaders/fragmentShader.frag",
@@ -44,7 +43,6 @@ public class DemoScene : Scene {
       CollisionType.BoundingBox
     );
     Entities.Add(objTest);
-    */
 
     /*
     var objTest = new Entity();
@@ -74,7 +72,7 @@ public class DemoScene : Scene {
     Entities.Add(fbx);
     */
 
-    var chr_sword = Entity.CreateWithCollision<Entity>(
+    var chr_sword = Entity.CreateMeshWithCollision<Entity>(
       "chr_sword",
       new Vector3(0, 64, 0),
       "Resources/chr_sword/chr_sword.obj",
@@ -118,6 +116,7 @@ public class DemoScene : Scene {
     //CameraToolbox.CreateThirdPersonCamera(ref camera, ref window, null!);
     //objTest.AddComponent(new TransformController(10));
     CameraToolbox.CreateFreeCamera(ref camera, ref window);
+    //CameraToolbox.CreateOrthograpbicCamera(ref camera, ref window);
   }
 
   public override void RenderScene() {
